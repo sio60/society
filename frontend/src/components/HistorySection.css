@@ -1,0 +1,39 @@
+/* src/components/HistorySection.css */
+
+.history {
+  padding: 72px 0 80px;
+  background: #f7f8fa;
+}
+
+.history-inner {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.history-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.history-tagline {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+.history-text {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.history-highlight {
+  margin-top: 18px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: #203a55;
+}

@@ -1,0 +1,74 @@
+/* src/components/ProgramsSection.css */
+
+.programs {
+  background: #f7f8fa;
+  padding: 80px 0;
+}
+
+.programs-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 64px;
+}
+
+.programs-title {
+  font-size: 26px;
+  margin: 0 0 12px;
+}
+
+.programs-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin: 0 0 32px;
+}
+
+.programs-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.program-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  display: flex;
+  flex-direction: column;
+}
+
+.program-image {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+}
+
+.program-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.program-card-title {
+  font-size: 18px;
+  margin: 16px 20px 8px;
+}
+
+.program-card-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #555;
+  margin: 0 20px 20px;
+}
+
+/* 반응형 – 모바일에서 한 줄씩 */
+@media (max-width: 900px) {
+  .programs-inner {
+    padding: 0 24px;
+  }
+
+  .programs-grid {
+    grid-template-columns: 1fr;
+  }
+}

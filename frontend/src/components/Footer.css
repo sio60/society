@@ -1,0 +1,100 @@
+/* src/components/Footer.css */
+
+.site-footer {
+  background: #203a55; /* 어두운 남색 톤 */
+  color: #e5e7eb;
+  padding: 40px 0 32px;
+  font-size: 13px;
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 64px;
+}
+
+/* 공사 안내 박스 */
+.footer-notice {
+  background: rgba(31, 41, 55, 0.9);
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin-bottom: 20px;
+  border: 1px solid rgba(156, 163, 175, 0.4);
+}
+
+.footer-notice-title {
+  margin: 0 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #f9fafb;
+}
+
+.footer-notice p {
+  margin: 2px 0;
+  line-height: 1.6;
+}
+
+.footer-phone {
+  font-weight: 600;
+  color: #f97316; /* 살짝 포인트 오렌지 */
+}
+
+/* 사업자 정보 */
+.footer-meta p {
+  margin: 2px 0;
+  line-height: 1.5;
+}
+
+.footer-org {
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.footer-dot {
+  margin: 0 4px;
+  opacity: 0.6;
+}
+
+.footer-contact {
+  margin-top: 6px;
+}
+
+.footer-copy {
+  margin-top: 10px;
+  opacity: 0.7;
+}
+
+/* 반응형 */
+@media (max-width: 900px) {
+  .footer-inner {
+    padding: 0 20px;
+  }
+
+  .footer-notice {
+    font-size: 12px;
+  }
+}
+.footer-sns {
+  margin-top: 8px;
+}
+
+.footer-sns img {
+  width: 28px;
+  height: 28px;
+  display: inline-block;
+}
+/* 공사중 안내 박스 안 밴드 아이콘 영역 */
+.footer-notice-band {
+  margin-top: 10px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  color: #e5e7eb;
+}
+
+.footer-notice-band img {
+  width: 24px;
+  height: 24px;
+  display: block;
+}

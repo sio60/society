@@ -1,0 +1,231 @@
+/* =========================
+   Pretendard 폰트 선언
+   ========================= */
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');
+  font-weight: 100;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');
+  font-weight: 200;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');
+  font-weight: 800;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Pretendard';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');
+  font-weight: 900;
+  font-display: swap;
+}
+
+/* =========================
+   전역 기본 설정
+   ========================= */
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+}
+
+button, input, textarea, select {
+  font-family: inherit;
+}
+
+/* =========================
+   히어로 섹션
+   ========================= */
+:root {
+  --hero-bg: #203a55; /* 히어로 파란색 */
+}
+
+/* 파란 영역 전체 */
+.hero {
+  position: relative;
+  width: 100%;
+  background: var(--hero-bg);
+  color: #ffffff;
+
+  padding: 48px 0;          /* 섹션 높이 (원하면 숫자만 조절) */
+  overflow: hidden;         /* 이미지가 밖으로 튀어나오는 거 방지 */
+}
+
+/* 필요하면 다시 쓸 수 있게만 남겨둠
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(40, 96, 165, 0.25);
+  pointer-events: none;
+}
+*/
+
+/* 안쪽 레이아웃 */
+.hero-inner {
+  position: relative;
+  width: 100%;
+  max-width: none;          /* 화면 전체 사용 */
+  margin: 0;
+  padding: 0 64px;          /* 좌우 여백 (왼쪽/오른쪽 동일) */
+  display: flex;
+  align-items: center;      /* 텍스트/이미지 세로 가운데 정렬 */
+  gap: 48px;                /* 텍스트와 이미지 사이 간격 */
+}
+
+/* 왼쪽 텍스트 영역 - 폭 좁게 */
+.hero-left {
+  flex: 0 0 38%;            /* 텍스트는 약 38% 폭 사용 */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.hero-tagline {
+  font-size: 18px;
+  margin-bottom: 12px;
+  opacity: 0.9;
+}
+
+.hero-title {
+  font-size: 32px;
+  line-height: 1.4;
+  margin: 0 0 24px;
+}
+
+.hero-title span {
+  font-weight: 700;
+}
+
+/* 버튼 */
+.hero-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 28px;
+  border-radius: 999px;
+  border: 1px solid #ffffff;
+  background: #ffffff;
+  color: #263445;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.hero-button:hover {
+  background: transparent;
+  color: #ffffff;
+}
+
+/* 오른쪽 이미지 영역 - 폭 넓게 */
+.hero-right {
+  flex: 1;                  /* 나머지 폭 전부 이미지 쪽으로 */
+  display: flex;
+  justify-content: flex-end; /* 오른쪽 끝으로 붙이기 */
+  align-items: center;
+}
+
+/* 슬라이드 박스: 모든 슬라이드 크기/높이 통일 + 넓게 */
+.hero-slide-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 1100px;        /* 👉 이미지 가로 폭 (더 넓게 하고 싶으면 숫자 키워) */
+  aspect-ratio: 21 / 9;     /* 납작한 느낌, 높이 고정 */
+  overflow: hidden;
+  border-radius: 0;
+  background: none;
+}
+
+.hero-slide-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;        /* 꽉 채우기 */
+  display: block;
+}
+
+/* 파란 배경으로 자연스럽게 녹아드는 그라데이션 */
+.hero-slide-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to right,
+      var(--hero-bg) 0%,
+      var(--hero-bg) 10%,
+      rgba(32, 58, 85, 0) 40%
+    ),
+    linear-gradient(
+      to bottom,
+      var(--hero-bg) 0%,
+      rgba(32, 58, 85, 0) 30%
+    ),
+    linear-gradient(
+      to top,
+      var(--hero-bg) 0%,
+      rgba(32, 58, 85, 0) 30%
+    );
+  pointer-events: none;
+}
+
+/* 인디케이터는 숨김 (나중에 쓰고 싶으면 display 바꾸면 됨) */
+.hero-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  border: none;
+  background: rgba(255, 255, 255, 0.4);
+  cursor: pointer;
+}
+
+.hero-dot.active {
+  width: 18px;
+  background: #ffffff;
+}
+
+.hero-dots {
+  display: none;
+}

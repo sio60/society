@@ -1,0 +1,74 @@
+/* src/components/HistoryPage.css */
+
+.history-page {
+  padding: 72px 0 96px;
+  background: #ffffff;
+}
+
+.history-page-inner {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.history-page-header h1 {
+  font-size: 28px;
+  margin-bottom: 6px;
+}
+
+.history-page-tagline {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 14px;
+}
+
+.history-page-lead {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #444;
+}
+
+.history-page-text {
+  margin-top: 28px;
+}
+
+.history-page-text p {
+  font-size: 15px;
+  line-height: 1.8;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+.history-page-quote {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #203a55;
+}
+
+.history-page-image-block {
+  margin-top: 40px;
+}
+
+.history-page-image-block h2 {
+  font-size: 20px;
+  margin-bottom: 4px;
+}
+
+.history-page-image-desc {
+  font-size: 13px;
+  color: #777;
+  margin-bottom: 12px;
+}
+
+.history-page-image-wrapper {
+  border: 1px solid #e0e0e0;
+  background: #fafafa;
+  padding: 16px;
+  overflow-x: auto;
+}
+
+.history-page-image-wrapper img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
