@@ -1,0 +1,128 @@
+/* 공통 회원가입/로그인 페이지 레이아웃 */
+
+.auth-page {
+  /* 헤더(대략 64px) 빼고 나머지 높이를 전부 채움 */
+  min-height: calc(100vh - 64px);
+
+  /* 가운데 정렬 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* 배경색 – 카드 주변 연한 회색 */
+  background: #f5f7fb;
+
+  /* 모바일에서 너무 붙지 않게 살짝 여백 */
+  padding: 40px 16px;
+
+  box-sizing: border-box;
+}
+.auth-inner {
+  max-width: 520px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+  padding: 32px 28px 36px;
+}
+
+.auth-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.auth-subtitle {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 24px;
+}
+
+/* 폼 */
+
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.auth-label {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.auth-input,
+.auth-textarea {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #d0d5dd;
+  font-size: 14px;
+  outline: none;
+  background: #ffffff;
+}
+
+.auth-input:focus,
+.auth-textarea:focus {
+  border-color: #203a55;
+  box-shadow: 0 0 0 1px rgba(32, 58, 85, 0.1);
+}
+
+.auth-textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+
+/* 에러 표시 */
+
+.auth-error {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #d92d20;
+}
+
+/* 버튼 */
+
+.auth-button-main {
+  margin-top: 8px;
+  width: 100%;
+  padding: 11px 16px;
+  border-radius: 999px;
+  border: none;
+  background: #203a55;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.auth-button-main:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.auth-button-main:not(:disabled):hover {
+  background: #1a2f44;
+}
+
+/* 하단 링크 */
+
+.auth-bottom {
+  margin-top: 20px;
+  font-size: 13px;
+  color: #666;
+  text-align: center;
+}
+
+.auth-bottom a {
+  color: #203a55;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
