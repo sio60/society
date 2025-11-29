@@ -1,0 +1,361 @@
+/* ========== 관리자 공통 레이아웃 ========== */
+
+.admin-page {
+  min-height: calc(100vh - 64px); /* 헤더 제외한 높이 정도 */
+  background: #f5f7fb;
+  padding: 40px 16px 60px;
+}
+
+.admin-inner {
+  max-width: 1040px;
+  margin: 0 auto;
+}
+
+.admin-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #111827;
+}
+
+/* ========== 섹션 카드 ========== */
+
+.admin-section {
+  margin-top: 28px;
+  padding: 24px 28px;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.06);
+}
+
+.admin-section-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #111827;
+}
+
+.admin-section-desc {
+  margin-bottom: 12px;
+  font-size: 13px;
+  color: #6b7280;
+}
+
+.admin-error {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 14px;
+}
+
+/* ========== 공통 폼 ========== */
+
+.notice-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-row-inline {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.form-row label {
+  font-size: 14px;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-row input[type="text"],
+.form-row input[type="file"],
+.form-row select,
+.form-row textarea {
+  font-size: 14px;
+  padding: 9px 11px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  outline: none;
+  background: #f9fafb;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease,
+    background-color 0.15s ease;
+}
+
+.form-row input[type="text"]:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  border-color: #203a55;
+  background: #ffffff;
+  box-shadow: 0 0 0 1px rgba(32, 58, 85, 0.08);
+}
+
+.form-row textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+
+/* ReactQuill 에디터 기본 스타일 살짝 손보기 */
+.ql-container {
+  border-radius: 10px;
+  border: 1px solid #e5e7eb !important;
+  background: #f9fafb;
+}
+
+.ql-toolbar {
+  border-radius: 10px 10px 0 0;
+}
+
+/* ========== 버튼 ========== */
+
+.admin-primary-btn {
+  align-self: flex-start;
+  margin-top: 4px;
+  padding: 9px 20px;
+  border-radius: 999px;
+  border: none;
+  background: #203a55;
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.05s ease;
+}
+
+.admin-primary-btn:hover {
+  background: #1a3044;
+}
+
+.admin-primary-btn:active {
+  transform: translateY(1px);
+}
+
+.admin-primary-btn:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.admin-secondary-btn {
+  padding: 8px 14px;
+  border-radius: 999px;
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  font-size: 13px;
+  font-weight: 500;
+  color: #374151;
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+}
+
+.admin-secondary-btn:hover {
+  background: #f3f4f6;
+}
+
+.admin-secondary-btn.danger {
+  border-color: #fecaca;
+  color: #b91c1c;
+}
+
+.admin-secondary-btn.danger:hover {
+  background: #fef2f2;
+}
+
+/* 도움 텍스트 */
+
+.admin-help-text {
+  margin-top: 4px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+/* ========== 프로그램 글 리스트 ========== */
+
+.admin-program-list {
+  margin-top: 20px;
+}
+
+.admin-subtitle {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 8px;
+  color: #111827;
+}
+
+.program-post-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.program-post-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.program-post-main {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.program-post-main h4 {
+  margin: 0 0 4px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.program-post-date {
+  margin: 0 0 6px;
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.program-post-content {
+  font-size: 13px;
+  color: #374151;
+}
+
+.program-post-side {
+  flex: 0 0 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+}
+
+.program-post-thumb {
+  width: 160px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.program-post-buttons {
+  display: flex;
+  gap: 6px;
+}
+
+/* 업로드 이미지 미리보기 */
+
+.admin-image-preview {
+  margin-top: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.admin-image-preview-item {
+  width: 72px;
+  height: 72px;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.admin-image-preview-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ========== 회원 목록 테이블 ========== */
+
+.admin-table-wrapper {
+  margin-top: 10px;
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.admin-table thead {
+  background: #203a55;
+  color: #ffffff;
+}
+
+.admin-table th,
+.admin-table td {
+  padding: 9px 10px;
+  text-align: left;
+  border-bottom: 1px solid #e5e7eb;
+  white-space: nowrap;
+}
+
+.admin-table tbody tr:nth-child(even) {
+  background: #f9fafb;
+}
+
+/* ========== 반응형 ========== */
+
+@media (max-width: 768px) {
+  .admin-page {
+    padding: 24px 12px 40px;
+  }
+
+  .admin-section {
+    padding: 18px 16px;
+  }
+
+  .admin-title {
+    font-size: 22px;
+  }
+
+  .program-post-item {
+    flex-direction: column;
+  }
+
+  .program-post-side {
+    align-items: flex-start;
+  }
+
+  .program-post-thumb {
+    width: 100%;
+    max-width: 260px;
+  }
+}
+/* 카테고리 리스트 */
+
+.program-category-list {
+  list-style: none;
+  margin: 8px 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.program-category-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 1px solid #e5e7eb;
+  background: #f9fafb;
+}
+
+.program-category-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #111827;
+}

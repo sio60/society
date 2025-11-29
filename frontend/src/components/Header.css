@@ -1,20 +1,35 @@
+/* ===== 헤더 전체 ===== */
 .site-header {
   width: 100%;
   background-color: #ffffff;
   border-bottom: 1px solid #e5e5e5;
 }
 
-/* 🔥 양옆 여백 0으로 */
 .header-inner {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 0;              /* ← 여기! 여백 전부 제거 */
+  position: relative;
   height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center; /* 로고만 딱 가운데 */
+}
 
+/* 가운데 로고 */
+.header-center img {
+  height: 54px;          /* 두 배 정도로 크게 */
+  object-fit: contain;
+  filter: hue-rotate(-15deg) saturate(1.1);
+  /* 연녹색 느낌 톤 보정 (원본 그대로 쓰고 싶으면 이 줄 삭제) */
+}
+
+/* 좌/우(메뉴, 버튼) 영역 */
+.header-edges {
+  position: absolute;
+  inset: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  padding-left: 8px;
+  padding-right: 24px;
 }
 
 /* 왼쪽 메뉴 버튼 */
@@ -36,43 +51,43 @@
   object-fit: contain;
 }
 
-/* 가운데 로고들 */
-.header-center {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-left: 70px;
-}
-
-.header-center img {
-  height: 32px;
-  object-fit: contain;
-}
-
-/* 오른쪽 회원가입 / 로그인 */
+/* 오른쪽 버튼들 */
 .header-actions {
   display: flex;
   align-items: center;
   gap: 10px;
-  margin-right: 10px;        /* 혹시 몰라서 명시 */
 }
 
+/* pill 스타일 (연녹색 메인 컬러 사용) */
+.header-actions a,
 .header-actions button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   font-size: 14px;
   border-radius: 999px;
   padding: 6px 12px;
-  border: 1px solid #203a55;
-  background: #203a55;
+
+  border: 1px solid var(--hero-bg);
+  background: var(--hero-bg);
   color: #ffffff;
+
   cursor: pointer;
+  text-decoration: none;
 }
 
 .header-actions .ghost {
   background: transparent;
-  color: #203a55;
+  color: var(--hero-bg);
 }
-/* ===== 사이드 메뉴 ===== */
 
+/* hover */
+.header-actions a:hover,
+.header-actions button:hover {
+  opacity: 0.9;
+}
+
+/* ===== 사이드 메뉴 ===== */
 .side-menu-backdrop {
   position: fixed;
   inset: 0;
@@ -94,8 +109,10 @@
   left: 0;
   bottom: 0;
   width: 260px;
-  background: #203a55;
-  color: #ffffff;
+
+  background: var(--hero-bg);   /* 연녹색 메인 톤 */
+  color: #ecfdf3;
+
   padding: 20px 18px;
   transform: translateX(-100%);
   transition: transform 0.25s ease-out;
@@ -112,7 +129,7 @@
   align-self: flex-end;
   border: none;
   background: transparent;
-  color: #ffffff;
+  color: #bbf7d0;
   font-size: 24px;
   cursor: pointer;
 }
@@ -121,6 +138,7 @@
   font-size: 18px;
   margin: 4px 0 12px;
   font-weight: 600;
+  color: #ecfdf3;
 }
 
 .side-menu-list {
@@ -133,11 +151,99 @@
 }
 
 .side-menu-list a {
-  color: #ffffff;
+  color: #ecfdf3;
   text-decoration: none;
   font-size: 15px;
 }
 
 .side-menu-list a:hover {
   text-decoration: underline;
+}
+
+/* === 담양군 지부 드롭다운 === */
+.side-menu-list li.has-sub {
+  margin-top: 4px;
+}
+
+.side-sub-toggle {
+  width: 100%;
+  border: none;
+  background: transparent;
+  color: #ecfdf3;
+  font-size: 15px;
+  padding: 4px 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.side-sub-toggle .caret {
+  font-size: 11px;
+  opacity: 0.8;
+}
+
+.side-submenu {
+  list-style: none;
+  margin: 4px 0 0 10px;
+  padding-left: 10px;
+  border-left: 1px solid rgba(236, 253, 245, 0.4);
+  display: none;
+}
+
+.side-menu-list li.has-sub.open .side-submenu {
+  display: block;
+}
+
+.side-submenu li a {
+  font-size: 14px;
+  color: #e5e7eb;
+}
+
+.side-submenu li a:hover {
+  text-decoration: underline;
+}
+
+/* 🔻 모바일에서 정리 (한 줄 레이아웃 유지) */
+@media (max-width: 600px) {
+  .header-inner {
+    height: 56px;
+    padding: 0 10px;
+    justify-content: center;
+  }
+
+  .header-center img {
+    height: 40px;        /* 모바일에서 살짝 줄이기 */
+    max-width: 60vw;
+  }
+
+  .header-edges {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 6px;
+    padding-right: 10px;
+  }
+
+  .header-actions {
+    gap: 6px;
+  }
+
+  /* 모바일에선 ghost 버튼(회원가입 등) 숨김 */
+  .header-actions .ghost {
+    display: none;
+  }
+
+  .header-actions a,
+  .header-actions button {
+    font-size: 13px;
+    padding: 4px 10px;
+  }
+}
+.side-submenu-empty {
+  font-size: 13px;
+  color: #e5e7eb;
+  opacity: 0.85;
 }

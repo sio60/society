@@ -1,4 +1,3 @@
-// src/components/HistoryPage.jsx
 import React from "react";
 import "./HistoryPage.css";
 import foundingImg from "../assets/founding-statement.png"; // 설립취지서 이미지

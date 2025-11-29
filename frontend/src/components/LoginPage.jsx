@@ -1,83 +1,112 @@
+// src/components/LoginPage.jsx
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
-import "./AuthPage.css";
+import { Link, useNavigate } from "react-router-dom";
+import { supabase } from "../lib/supabaseClient";
+import "./Auth.css";
 
 export default function LoginPage() {
+  const navigate = useNavigate();
   const [form, setForm] = useState({
     username: "",
     password: "",
   });
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+  const [errorMsg, setErrorMsg] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setForm((prev) => ({ ...prev, [name]: value }));
-    setError("");
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setErrorMsg("");
+    setLoading(true);
 
-    if (!form.username || !form.password) {
-      setError("아이디와 비밀번호를 입력해 주세요.");
-      return;
+    try {
+      let loginId = form.username.trim();
+
+      // 🔹 admin 계정은 아이디만으로 로그인 허용
+      //    (admin → admin@icocm.org 로 변환)
+      if (loginId === "admin") {
+        loginId = "admin@icocm.org";
+      } else if (!loginId.includes("@")) {
+        // 그 외 일반 회원은 이메일 형식 강제
+        setErrorMsg(
+          "아이디는 이메일 형식으로 입력해 주세요. (또는 관리자 계정은 admin)"
+        );
+        setLoading(false);
+        return;
+      }
+
+      const { error } = await supabase.auth.signInWithPassword({
+        email: loginId,
+        password: form.password,
+      });
+
+      if (error) {
+        throw error;
+      }
+
+      // 로그인 성공 → 메인으로
+      navigate("/");
+    } catch (err) {
+      console.error(err);
+      setErrorMsg(err.message || "로그인 중 오류가 발생했습니다.");
+    } finally {
+      setLoading(false);
     }
-
-    // 👉 나중에 Supabase 로그인 API 호출 자리
-    console.log("login form:", form);
-    alert("아직 서버와 연결 전입니다. (프론트 폼만 완료!)");
   };
 
   return (
-    <section className="auth-page">
-      <div className="auth-inner">
+    <main className="auth-page">
+      <div className="auth-card">
         <h1 className="auth-title">로그인</h1>
         <p className="auth-subtitle">
           ICoCM 회원 서비스를 이용하시려면 아이디와 비밀번호를 입력해 주세요.
         </p>
 
+        {errorMsg && <div className="auth-error">{errorMsg}</div>}
+
         <form className="auth-form" onSubmit={handleSubmit}>
           <div className="auth-field">
-            <label className="auth-label" htmlFor="username">
-              아이디
-            </label>
+            <label>아이디</label>
             <input
-              id="username"
               name="username"
-              className="auth-input"
-              placeholder="가입하신 아이디"
               value={form.username}
               onChange={handleChange}
+              placeholder="예: user@example.com"
+              required
             />
           </div>
 
           <div className="auth-field">
-            <label className="auth-label" htmlFor="password">
-              비밀번호
-            </label>
+            <label>비밀번호</label>
             <input
-              id="password"
-              name="password"
               type="password"
-              className="auth-input"
-              placeholder="비밀번호"
+              name="password"
               value={form.password}
               onChange={handleChange}
+              required
             />
           </div>
 
-          {error && <div className="auth-error">{error}</div>}
-
-          <button type="submit" className="auth-button-main">
-            로그인
+          <button
+            className="auth-button primary"
+            type="submit"
+            disabled={loading}
+          >
+            {loading ? "로그인 중..." : "로그인"}
           </button>
         </form>
 
-        <div className="auth-bottom">
+        <p className="auth-footer-text">
           아직 회원이 아니신가요?{" "}
-          <Link to="/signup">회원가입 하러 가기</Link>
-        </div>
+          <Link to="/signup" className="auth-link">
+            회원가입 하러 가기
+          </Link>
+        </p>
       </div>
-    </section>
+    </main>
   );
 }

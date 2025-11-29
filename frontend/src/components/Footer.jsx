@@ -39,8 +39,6 @@ export default function Footer() {
           <p className="footer-org">
             (사)국제융합의학학회
             <span className="footer-dot">·</span>
-            International Conference of Convergence Medicine
-            <span className="footer-dot">·</span>
             ICoCM
           </p>
           <p>

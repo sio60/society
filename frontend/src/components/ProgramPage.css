@@ -1,0 +1,161 @@
+/* 전체 레이아웃 */
+.program-page {
+  padding: 40px 16px 80px;
+  background: #ffffff;
+}
+
+.program-inner {
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+/* 페이지 타이틀 */
+.program-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: #203a55;
+}
+
+/* 에러 메시지 */
+.program-error {
+  margin-bottom: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: #fef2f2;
+  color: #b91c1c;
+  font-size: 14px;
+}
+
+/* 각 글(게시물) 카드 */
+.program-article {
+  padding: 20px 0 24px;
+  border-bottom: 1px dashed #e5e7eb;
+}
+
+.program-article:last-of-type {
+  border-bottom: none;
+}
+
+.program-article-title {
+  font-size: 18px;
+  font-weight: 600;
+  margin: 0 0 4px;
+  color: #111827;
+}
+
+.program-article-date {
+  font-size: 12px;
+  color: #9ca3af;
+  margin-bottom: 10px;
+}
+
+/* 본문 (Quill HTML 내용) */
+.program-article-content p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #374151;
+  margin: 4px 0;
+}
+
+.program-article-content ul {
+  padding-left: 20px;
+  margin: 6px 0 12px;
+}
+
+.program-article-content li {
+  font-size: 14px;
+  margin-bottom: 4px;
+}
+
+.program-article-content strong {
+  font-weight: 600;
+}
+
+/* Quill 안에 직접 들어간 이미지도 깨지지 않게 */
+.program-article-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  margin: 8px 0;
+}
+
+/* ===== 이미지 그리드 ===== */
+.program-image-grid {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.program-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.12);
+  cursor: pointer;
+  transition: transform 0.16s ease-out, filter 0.16s ease-out;
+}
+
+.program-image:hover {
+  transform: scale(1.03);
+  filter: brightness(1.03);
+}
+
+/* ===== 이미지 미리보기 모달 ===== */
+.program-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999; /* 헤더/푸터 위 */
+}
+
+.program-modal {
+  position: relative;
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 16px 16px 20px;
+  max-width: 960px;
+  width: 90vw;
+  max-height: 90vh;
+  box-shadow: 0 20px 40px rgba(15, 23, 42, 0.35);
+}
+
+.program-modal-image {
+  width: 100%;
+  max-height: 80vh;
+  object-fit: contain;
+  border-radius: 12px;
+  display: block;
+}
+
+.program-modal-close {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  border: none;
+  background: transparent;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+  color: #4b5563;
+}
+
+/* ===== 반응형 ===== */
+@media (max-width: 600px) {
+  .program-page {
+    padding: 28px 14px 60px;
+  }
+
+  .program-title {
+    font-size: 22px;
+  }
+
+  .program-image {
+    height: 180px;
+  }
+}

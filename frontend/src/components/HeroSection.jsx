@@ -1,3 +1,4 @@
+// src/components/HeroSection.jsx
 import React, { useState, useEffect } from "react";
 import "./HeroSection.css";
 
@@ -20,18 +21,24 @@ export default function HeroSection() {
 
   return (
     <section id="hero" className="hero">
-      {/* 파란 반투명 판 (CSS에서 쓰면 주석 풀면 됨) */}
-      <div className="hero-overlay" />
+      {/* 필요하면 다시 쓸 수 있게만 남겨둠 */}
+      {/* <div className="hero-overlay" /> */}
 
       <div className="hero-inner">
         {/* 왼쪽 텍스트 영역 */}
         <div className="hero-left">
           <p className="hero-tagline">자연의학, 미래 100년의 의학을 열다,</p>
-          <h1 className="hero-title">
-            이제는 새로운 의학의 중심입니다.
+
+          {/* 🔥 h1에 학회 이름 박아서 검색용 키워드 */}
+          <h1 className="hero-title">(사)국제융합의학학회</h1>
+
+          <p className="hero-subtitle">
+            대체의학·통합의학 연구와 
+            <br />
+            국제 학술 교류를 선도하는 공식 학회입니다.
             <br />
             <span>ICoCM이 그 길을 엽니다.</span>
-          </h1>
+          </p>
         </div>
 
         {/* 오른쪽 슬라이드 영역 */}

@@ -19,8 +19,11 @@
   left: 0;
   bottom: 0;
   width: 260px;
-  background: #111827;
-  color: #fff;
+
+  /* 🔹 연녹색 톤(히어로랑 맞춤) */
+  background: var(--hero-bg);        /* = #3b7f5a */
+  color: #ecfdf3;
+
   transform: translateX(-100%);
   transition: transform 0.25s ease;
   z-index: 90;
@@ -43,12 +46,13 @@
 .side-nav-title {
   font-size: 16px;
   font-weight: 600;
+  color: #ecfdf3;
 }
 
 .side-nav-close {
   border: none;
   background: transparent;
-  color: #9ca3af;
+  color: #bbf7d0;   /* 옅은 연녹색 */
   font-size: 22px;
   cursor: pointer;
 }
@@ -67,13 +71,14 @@
   text-align: left;
   border: none;
   background: transparent;
-  color: #f9fafb;
+  color: #ecfdf3;
   padding: 8px 2px;
   font-size: 14px;
   cursor: pointer;
 }
 
+/* hover 시 살짝 밝은 연녹색 하이라이트 */
 .side-nav-list li button:hover {
-  background: rgba(255, 255, 255, 0.06);
+  background: rgba(236, 253, 245, 0.12);
   border-radius: 6px;
 }

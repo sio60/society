@@ -1,8 +1,8 @@
 /* src/components/Footer.css */
 
 .site-footer {
-  background: #203a55; /* 어두운 남색 톤 */
-  color: #e5e7eb;
+  background: var(--hero-bg); /* 메인 연녹색 계열과 통일 */
+  color: #ecfdf3;
   padding: 40px 0 32px;
   font-size: 13px;
 }
@@ -15,11 +15,11 @@
 
 /* 공사 안내 박스 */
 .footer-notice {
-  background: rgba(31, 41, 55, 0.9);
+  background: rgba(6, 47, 35, 0.9); /* 짙은 초록 */
   border-radius: 12px;
   padding: 16px 18px;
   margin-bottom: 20px;
-  border: 1px solid rgba(156, 163, 175, 0.4);
+  border: 1px solid rgba(187, 247, 208, 0.35); /* 연녹색 테두리 */
 }
 
 .footer-notice-title {
@@ -36,7 +36,7 @@
 
 .footer-phone {
   font-weight: 600;
-  color: #f97316; /* 살짝 포인트 오렌지 */
+  color: #f97316; /* 포인트 컬러(오렌지)는 그대로 살림 */
 }
 
 /* 사업자 정보 */
@@ -64,16 +64,7 @@
   opacity: 0.7;
 }
 
-/* 반응형 */
-@media (max-width: 900px) {
-  .footer-inner {
-    padding: 0 20px;
-  }
-
-  .footer-notice {
-    font-size: 12px;
-  }
-}
+/* SNS 아이콘 영역 */
 .footer-sns {
   margin-top: 8px;
 }
@@ -83,6 +74,7 @@
   height: 28px;
   display: inline-block;
 }
+
 /* 공사중 안내 박스 안 밴드 아이콘 영역 */
 .footer-notice-band {
   margin-top: 10px;
@@ -97,4 +89,15 @@
   width: 24px;
   height: 24px;
   display: block;
+}
+
+/* 반응형 */
+@media (max-width: 900px) {
+  .footer-inner {
+    padding: 0 20px;
+  }
+
+  .footer-notice {
+    font-size: 12px;
+  }
 }

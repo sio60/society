@@ -1,42 +1,64 @@
-import React from "react";
+// src/components/SideNav.jsx
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "./SideNav.css";
 
-export default function SideNav({ isOpen, onClose, onNavigate }) {
+export default function SideNav() {
+  const [open, setOpen] = useState(false);
+
+  const closeNav = () => setOpen(false);
+
   return (
     <>
-      {/* 어두운 배경 */}
-      <div
-        className={`side-backdrop ${isOpen ? "open" : ""}`}
-        onClick={onClose}
-      />
+      {/* 왼쪽 상단 햄버거 버튼 */}
+      <button
+        className="side-nav-toggle"
+        onClick={() => setOpen((prev) => !prev)}
+        aria-label="메뉴 열기"
+      >
+        <span />
+        <span />
+        <span />
+      </button>
 
-      {/* 왼쪽 패널 */}
-      <nav className={`side-nav ${isOpen ? "open" : ""}`}>
-        <div className="side-nav-header">
-          <span className="side-nav-title">메뉴</span>
-          <button className="side-nav-close" onClick={onClose}>
+      {/* 오버레이 + 실제 패널 */}
+      <div
+        className={`side-nav-backdrop ${open ? "open" : ""}`}
+        onClick={closeNav}
+      >
+        <nav
+          className={`side-nav ${open ? "open" : ""}`}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <button
+            className="side-nav-close"
+            onClick={closeNav}
+            aria-label="메뉴 닫기"
+          >
             ×
           </button>
-        </div>
 
-        <ul className="side-nav-list">
-          <li>
-            <button onClick={() => onNavigate("hero")}>홈</button>
-          </li>
-          <li>
-            <button onClick={() => onNavigate("about")}>학회 소개</button>
-          </li>
-          <li>
-            <button onClick={() => onNavigate("programs")}>주요 활동</button>
-          </li>
-          <li>
-            <button onClick={() => onNavigate("history")}>학회 연혁</button>
-          </li>
-          <li>
-            <button onClick={() => onNavigate("footer")}>문의 / 연락처</button>
-          </li>
-        </ul>
-      </nav>
+          <h2 className="side-nav-title">ICoCM 메뉴</h2>
+
+          <ul className="side-nav-list">
+            <li>
+              <Link to="/" onClick={closeNav}>
+                메인 화면
+              </Link>
+            </li>
+            <li>
+              <Link to="/history" onClick={closeNav}>
+                학회 연혁 / 설립취지
+              </Link>
+            </li>
+            <li>
+              <Link to="/notices" onClick={closeNav}>
+                공지사항
+              </Link>
+            </li>
+          </ul>
+        </nav>
+      </div>
     </>
   );
 }

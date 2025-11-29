@@ -71,7 +71,9 @@ html,
 body {
   margin: 0;
   padding: 0;
+  overflow-x: hidden; 
   font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, system-ui, sans-serif;
+    overflow-x: hidden;
 }
 
 /* 버튼/인풋도 같은 폰트 쓰게 */
@@ -80,4 +82,15 @@ input,
 textarea,
 select {
   font-family: inherit;
+}
+/* 헤더(64px) 밑에서부터 화면 높이 채우는 컨테이너 */
+.page-with-footer {
+  min-height: calc(100vh - 64px); /* 헤더 높이만큼 빼줌 */
+  display: flex;
+  flex-direction: column;
+}
+
+/* 공지 메인 영역이 남는 공간을 다 차지하도록 */
+.page-with-footer > main.notice-page {
+  flex: 1;
 }
