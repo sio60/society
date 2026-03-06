@@ -31,7 +31,6 @@ const quillFormats = [
   "background",
   "align",
   "list",
-  "bullet",
   "link",
 ];
 
@@ -196,8 +195,8 @@ export default function AdminPage() {
         const sortOrder =
           programCategories.length > 0
             ? Math.max(
-                ...programCategories.map((c) => c.sort_order ?? 0)
-              ) + 1
+              ...programCategories.map((c) => c.sort_order ?? 0)
+            ) + 1
             : 1;
 
         const slug = generateCategorySlug(categoryFormLabel);
@@ -491,8 +490,8 @@ export default function AdminPage() {
       Array.isArray(post.image_urls) && post.image_urls.length > 0
         ? post.image_urls
         : post.image_url
-        ? [post.image_url]
-        : [];
+          ? [post.image_url]
+          : [];
 
     setProgramImageUrls(urls);
     setProgramImageFiles([]);
@@ -645,8 +644,8 @@ export default function AdminPage() {
                 {categorySaving
                   ? "저장 중..."
                   : editingCategory
-                  ? "카테고리 수정"
-                  : "카테고리 추가"}
+                    ? "카테고리 수정"
+                    : "카테고리 추가"}
               </button>
 
               {editingCategory && (
@@ -840,8 +839,8 @@ export default function AdminPage() {
                 {savingProgram
                   ? "저장 중..."
                   : editingProgramId
-                  ? "프로그램 글 수정"
-                  : "프로그램 글 등록"}
+                    ? "프로그램 글 수정"
+                    : "프로그램 글 등록"}
               </button>
 
               {editingProgramId && (
@@ -868,11 +867,11 @@ export default function AdminPage() {
                 {programPosts.map((post) => {
                   const imageUrls =
                     Array.isArray(post.image_urls) &&
-                    post.image_urls.length > 0
+                      post.image_urls.length > 0
                       ? post.image_urls
                       : post.image_url
-                      ? [post.image_url]
-                      : [];
+                        ? [post.image_url]
+                        : [];
                   const thumbUrl = imageUrls[0] || null;
 
                   return (

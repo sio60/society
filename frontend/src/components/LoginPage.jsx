@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
 import "./Auth.css";
 
+
 export default function LoginPage() {
   const navigate = useNavigate();
   const [form, setForm] = useState({
