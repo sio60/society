@@ -1,7 +1,7 @@
 /* 페이지 전체 */
 .notice-page {
   min-height: calc(100vh - 80px);
-  background: #f4f6fb;
+  background: #f0f4ff;
   padding: 40px 0 60px;
 }
 
@@ -22,8 +22,8 @@
 
 .notice-title {
   font-size: 24px;
-  font-weight: 700;
-  color: #111827;
+  font-weight: 800;
+  color: #0d2340;
   margin: 0 0 6px;
 }
 
@@ -91,9 +91,9 @@
 }
 
 .notice-row-link:hover {
-  box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.12);
   transform: translateY(-2px);
-  border-color: #d0d7eb;
+  border-color: #bfdbfe;
 }
 /* 왼쪽 썸네일 */
 .notice-thumb {
@@ -187,8 +187,9 @@
   border-radius: 0;
   padding: 0;
 
-  color: #203a55;
+  color: #2563eb;
   font-size: 14px;
+  font-weight: 500;
   cursor: pointer;
 }
 
@@ -238,6 +239,23 @@
   font-size: 14px;
   line-height: 1.7;
   color: #111827;
+}
+
+/* Quill HTML 렌더링 영역 스타일 리셋 */
+.notice-detail-content.ql-editor {
+  border: none !important;
+  padding: 0 !important;
+  font-size: 15px;
+  line-height: 1.75;
+  color: #1e293b;
+  min-height: unset;
+}
+
+.notice-detail-content.ql-editor img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin: 8px 0;
 }
 /* 왼쪽: 번호 + 제목 */
 .notice-row-main {

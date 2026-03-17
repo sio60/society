@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { supabase } from "../lib/supabaseClient";
-import "./NoticePage.css"; // 같은 스타일 파일 재사용
+import "react-quill-new/dist/quill.snow.css";
+import "./NoticePage.css";
 
 export default function NoticeDetailPage() {
   const { noticeId } = useParams();
@@ -100,11 +101,10 @@ export default function NoticeDetailPage() {
             </div>
           )}
 
-          <div className="notice-detail-content">
-            {notice.content?.split("\n").map((line, idx) => (
-              <p key={idx}>{line}</p>
-            ))}
-          </div>
+          <div
+            className="notice-detail-content ql-editor"
+            dangerouslySetInnerHTML={{ __html: notice.content }}
+          />
         </article>
       </div>
     </main>

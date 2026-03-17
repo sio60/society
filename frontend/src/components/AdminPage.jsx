@@ -1,5 +1,5 @@
 // src/components/AdminPage.jsx
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef, useCallback } from "react";
 import { supabase } from "../lib/supabaseClient";
 import ReactQuill from "react-quill-new";
 import "react-quill-new/dist/quill.snow.css";
@@ -8,17 +8,19 @@ import "./AdminPage.css";
 // 🔔 SMS 워커 주소 (.env에 VITE_SMS_API_URL 로 넣어둔 값)
 const SMS_API_URL = import.meta.env.VITE_SMS_API_URL;
 
-// ReactQuill 툴바 옵션
+// ReactQuill 툴바 옵션 (이미지 삽입 포함)
 const quillModules = {
-  toolbar: [
-    [{ header: [1, 2, 3, false] }],
-    ["bold", "italic", "underline", "strike"],
-    [{ color: [] }, { background: [] }],
-    [{ align: [] }],
-    [{ list: "ordered" }, { list: "bullet" }],
-    ["link"],
-    ["clean"],
-  ],
+  toolbar: {
+    container: [
+      [{ header: [1, 2, 3, false] }],
+      ["bold", "italic", "underline", "strike"],
+      [{ color: [] }, { background: [] }],
+      [{ align: [] }],
+      [{ list: "ordered" }, { list: "bullet" }],
+      ["link", "image"],
+      ["clean"],
+    ],
+  },
 };
 
 const quillFormats = [
@@ -32,6 +34,8 @@ const quillFormats = [
   "align",
   "list",
   "link",
+  "image",
+  "width",
 ];
 
 // 카테고리 slug 자동 생성용
@@ -46,8 +50,49 @@ const generateCategorySlug = (label) => {
   return `${base}-${Date.now()}`;
 };
 
+// Quill 에디터에 이미지를 Supabase에 업로드 후 삽입하는 핸들러 생성
+function useQuillImageHandler(quillRef, bucket = "notice-images") {
+  return useCallback(() => {
+    const input = document.createElement("input");
+    input.setAttribute("type", "file");
+    input.setAttribute("accept", "image/*");
+    input.click();
+
+    input.onchange = async () => {
+      const file = input.files?.[0];
+      if (!file) return;
+
+      const fileExt = file.name.split(".").pop();
+      const fileName = `${Date.now()}-${Math.random().toString(36).slice(2)}.${fileExt}`;
+      const filePath = `${fileName}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from(bucket)
+        .upload(filePath, file);
+
+      if (uploadError) {
+        alert("이미지 업로드 실패: " + uploadError.message);
+        return;
+      }
+
+      const { data: { publicUrl } } = supabase.storage
+        .from(bucket)
+        .getPublicUrl(filePath);
+
+      const editor = quillRef.current?.getEditor?.();
+      if (!editor) return;
+
+      const range = editor.getSelection(true);
+      editor.insertEmbed(range.index, "image", publicUrl, "user");
+      editor.setSelection(range.index + 1, "silent");
+    };
+  }, [quillRef, bucket]);
+}
+
 export default function AdminPage() {
   const [currentUser, setCurrentUser] = useState(null);
+  const noticeQuillRef = useRef(null);
+  const programQuillRef = useRef(null);
 
   // ---------- 프로그램 카테고리 ----------
   const [programCategories, setProgramCategories] = useState([]); // {id, slug, label, sort_order}[]
@@ -108,6 +153,26 @@ export default function AdminPage() {
   }, []);
 
   const isAdmin = currentUser?.email === "admin@icocm.org";
+
+  // ---------- Quill 이미지 업로드 핸들러 ----------
+  const noticeImageHandler = useQuillImageHandler(noticeQuillRef, "notice-images");
+  const programImageHandler = useQuillImageHandler(programQuillRef, "program-images");
+
+  // 공지 Quill 모듈 (이미지 핸들러 포함)
+  const noticeQuillModules = React.useMemo(() => ({
+    toolbar: {
+      container: quillModules.toolbar.container,
+      handlers: { image: noticeImageHandler },
+    },
+  }), [noticeImageHandler]);
+
+  // 프로그램 Quill 모듈 (이미지 핸들러 포함)
+  const programQuillModules = React.useMemo(() => ({
+    toolbar: {
+      container: quillModules.toolbar.container,
+      handlers: { image: programImageHandler },
+    },
+  }), [programImageHandler]);
 
   // ---------- 회원 목록 불러오기 ----------
   useEffect(() => {
@@ -715,19 +780,20 @@ export default function AdminPage() {
             </div>
 
             <div className="form-row">
-              <label>내용</label>
+              <label>내용 <span className="admin-help-text">※ 툴바의 🖼️ 버튼으로 본문에 이미지 직접 삽입 가능. 삽입 후 이미지를 클릭하면 크기 조절 핸들이 나타납니다.</span></label>
               <ReactQuill
+                ref={noticeQuillRef}
                 theme="snow"
                 value={content}
                 onChange={setContent}
-                modules={quillModules}
+                modules={noticeQuillModules}
                 formats={quillFormats}
                 placeholder="공지 내용을 입력해 주세요."
               />
             </div>
 
             <div className="form-row">
-              <label>이미지 (선택)</label>
+              <label>대표 이미지 (선택, 목록 썸네일용)</label>
               <input
                 type="file"
                 accept="image/*"
@@ -786,12 +852,13 @@ export default function AdminPage() {
             </div>
 
             <div className="form-row">
-              <label>내용</label>
+              <label>내용 <span className="admin-help-text">※ 툴바의 🖼️ 버튼으로 본문에 이미지 직접 삽입 가능</span></label>
               <ReactQuill
+                ref={programQuillRef}
                 theme="snow"
                 value={programContent}
                 onChange={setProgramContent}
-                modules={quillModules}
+                modules={programQuillModules}
                 formats={quillFormats}
                 placeholder="본문 내용을 입력해 주세요."
               />

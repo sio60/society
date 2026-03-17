@@ -14,6 +14,7 @@ import SignupPage from "./components/SignupPage";
 import NoticePage from "./components/NoticePage";
 import NoticeDetailPage from "./components/NoticeDetailPage";
 import AdminPage from "./components/AdminPage";
+import LatestNewsTicker from "./components/LatestNewsTicker";
 
 // 🔹 새 공통 프로그램 페이지
 import ProgramPage from "./components/ProgramPage";
@@ -31,6 +32,7 @@ function HomePage() {
   return (
     <>
       <HeroSection />
+      <LatestNewsTicker />
       <HistorySection />
       <AboutSection />
       <ProgramsSection />
